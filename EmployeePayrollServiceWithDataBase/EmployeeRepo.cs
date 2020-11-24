@@ -55,10 +55,11 @@ namespace EmployeePayrollServiceWithDataBase
                             employeeModel.Taxable_Pay = dataReader.GetDecimal(10);
                             employeeModel.Income_Tax = dataReader.GetDecimal(11);
                             employeeModel.Net_Pay = dataReader.GetDecimal(12);
+
                             Console.WriteLine(employeeModel.Id +" , "+ employeeModel.Name + " , " + employeeModel.Salary + " , " + employeeModel.Start + " , " +
                             employeeModel.Gender + " , " + employeeModel.Address + " , " + employeeModel.Department + " , " + employeeModel.PhoneNumber + " , " +
                             employeeModel.Basic_Pay + " , " + employeeModel.Deductions + " , " + employeeModel.Taxable_Pay + " , " + employeeModel.Income_Tax + " , " + employeeModel.Net_Pay);
-                            Console.WriteLine("\n");
+                            Console.WriteLine();
                         }
                     }
                     else
@@ -143,8 +144,8 @@ namespace EmployeePayrollServiceWithDataBase
                     command.CommandText = updateQuery;
                     /// It used to executing queries that does not return any data.
                     /// Instead returns the number of rows affected.
-                    int numberOfEffectedRows = command.ExecuteNonQuery();
-                    if (numberOfEffectedRows != 0)
+                    int numberOfAffectedRows = command.ExecuteNonQuery();
+                    if (numberOfAffectedRows != 0)
                     {
                         return true;
                     }
@@ -162,6 +163,63 @@ namespace EmployeePayrollServiceWithDataBase
                     /// Connections closes
                     this.sqlConnection.Close();
                 }
+            }
+        }
+
+        public void GetEmployeeDataWithGiveRange(string updateQuery)
+        {
+            try
+            {
+                /// Creating a references of employee model class
+                EmployeeModel employeeModel = new EmployeeModel();
+                using (this.sqlConnection)
+                {
+                    /// Writing sql query
+                    //string updateQuery = "select * from Employee_Payroll where start between cast('2019-01-01' as date) and SYSDATETIME()";
+                    SqlCommand command = new SqlCommand(updateQuery, this.sqlConnection);
+                    /// Opening connection
+                    this.sqlConnection.Open();
+                    /// Executing the sql query
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    /// If not null
+                    /// Read all data form database
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            employeeModel.Id = dataReader.GetInt32(0);
+                            employeeModel.Name = dataReader.GetString(1);
+                            employeeModel.Salary = dataReader.GetDecimal(2);
+                            employeeModel.Start = dataReader.GetDateTime(3);
+                            employeeModel.Gender = Convert.ToChar(dataReader.GetString(4));
+                            employeeModel.Department = dataReader.GetString(5);
+                            employeeModel.PhoneNumber = dataReader.GetString(6);
+                            employeeModel.Address = dataReader.GetString(7);
+                            employeeModel.Basic_Pay = dataReader.GetDecimal(8);
+                            employeeModel.Deductions = dataReader.GetDecimal(9);
+                            employeeModel.Taxable_Pay = dataReader.GetDecimal(10);
+                            employeeModel.Income_Tax = dataReader.GetDecimal(11);
+                            employeeModel.Net_Pay = dataReader.GetDecimal(12);
+
+                            Console.WriteLine(employeeModel.Id + " , " + employeeModel.Name + " , " + employeeModel.Salary + " , " + employeeModel.Start + " , " +
+                            employeeModel.Gender + " , " + employeeModel.Address + " , " + employeeModel.Department + " , " + employeeModel.PhoneNumber + " , " +
+                            employeeModel.Basic_Pay + " , " + employeeModel.Deductions + " , " + employeeModel.Taxable_Pay + " , " + employeeModel.Income_Tax + " , " + employeeModel.Net_Pay);
+                            Console.WriteLine();
+
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No data found");
+                    }
+                    dataReader.Close();
+                    /// Closing connection
+                    this.sqlConnection.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
             }
         }
     }
