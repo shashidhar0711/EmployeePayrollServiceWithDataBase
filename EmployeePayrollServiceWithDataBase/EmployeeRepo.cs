@@ -166,6 +166,11 @@ namespace EmployeePayrollServiceWithDataBase
             }
         }
 
+        /// <summary>
+        /// Gets the employee data with give range.
+        /// </summary>
+        /// <param name="updateQuery">The update query.</param>
+        /// <exception cref="Exception"></exception>
         public void GetEmployeeDataWithGiveRange(string updateQuery)
         {
             try
@@ -206,6 +211,215 @@ namespace EmployeePayrollServiceWithDataBase
                             employeeModel.Basic_Pay + " , " + employeeModel.Deductions + " , " + employeeModel.Taxable_Pay + " , " + employeeModel.Income_Tax + " , " + employeeModel.Net_Pay);
                             Console.WriteLine();
 
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No data found");
+                    }
+                    dataReader.Close();
+                    /// Closing connection
+                    this.sqlConnection.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// Sums the of salary gender.
+        /// </summary>
+        /// <param name="updateQuery">The update query.</param>
+        /// <exception cref="Exception"></exception>
+        public void SumOfSalaryByGender(string updateQuery)
+        {
+            try
+            {
+                using (this.sqlConnection)
+                {
+                    /// Writing sql query
+                    SqlCommand command = new SqlCommand(updateQuery, this.sqlConnection);
+                    /// Opening connection
+                    this.sqlConnection.Open();
+                    /// Executing the sql query
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    /// If not null
+                    /// Read all data form database
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            Console.WriteLine("Gender = " + dataReader.GetString(0)+ " , " +"Sum Of Salary = "+ dataReader.GetDecimal(1));
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No data found");
+                    }
+                    dataReader.Close();
+                    /// Closing connection
+                    this.sqlConnection.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// Averages the salary by gender.
+        /// </summary>
+        /// <param name="updateQuery">The update query.</param>
+        /// <exception cref="Exception"></exception>
+        public void AverageSalaryByGender(string updateQuery)
+        {
+            try
+            {
+                using (this.sqlConnection)
+                {
+                    /// Writing sql query
+                    SqlCommand command = new SqlCommand(updateQuery, this.sqlConnection);
+                    /// Opening connection
+                    this.sqlConnection.Open();
+                    /// Executing the sql query
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    /// If not null
+                    /// Read all data form database
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            /// It will print average of salary
+                            Console.WriteLine("Gender = " + dataReader.GetString(0) + " , " + "Average Of Salary = " + dataReader.GetDecimal(1));
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No data found");
+                    }
+                    dataReader.Close();
+                    /// Closing connection
+                    this.sqlConnection.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// Minimums the salary by gender.
+        /// </summary>
+        /// <param name="updateQuery">The update query.</param>
+        /// <exception cref="Exception"></exception>
+        public void MinimumSalaryByGender(string updateQuery)
+        {
+            try
+            {
+                using (this.sqlConnection)
+                {
+                    /// Writing sql query
+                    SqlCommand command = new SqlCommand(updateQuery, this.sqlConnection);
+                    /// Opening connection
+                    this.sqlConnection.Open();
+                    /// Executing the sql query
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    /// If not null
+                    /// Read all data form database
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            /// It will print Minimum of salary
+                            Console.WriteLine("Gender = " + dataReader.GetString(0) + " , " + "Minimum Of Salary = " + dataReader.GetDecimal(1));
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No data found");
+                    }
+                    dataReader.Close();
+                    /// Closing connection
+                    this.sqlConnection.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// Maximums the salary by gender.
+        /// </summary>
+        /// <param name="updateQuery">The update query.</param>
+        /// <exception cref="Exception"></exception>
+        public void MaximumSalaryByGender(string updateQuery)
+        {
+            try
+            {
+                using (this.sqlConnection)
+                {
+                    /// Writing sql query
+                    SqlCommand command = new SqlCommand(updateQuery, this.sqlConnection);
+                    /// Opening connection
+                    this.sqlConnection.Open();
+                    /// Executing the sql query
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    /// If not null
+                    /// Read all data form database
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            /// It will print Maximum Salary
+                            Console.WriteLine("Gender = " + dataReader.GetString(0) + " , " + "Maximum Of Salary = " + dataReader.GetDecimal(1));
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No data found");
+                    }
+                    dataReader.Close();
+                    /// Closing connection
+                    this.sqlConnection.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// Counts the salary by gender.
+        /// </summary>
+        /// <param name="updateQuery">The update query.</param>
+        /// <exception cref="Exception"></exception>
+        public void CountSalaryByGender(string updateQuery)
+        {
+            try
+            {
+                using (this.sqlConnection)
+                {
+                    /// Writing sql query
+                    SqlCommand command = new SqlCommand(updateQuery, this.sqlConnection);
+                    /// Opening connection
+                    this.sqlConnection.Open();
+                    /// Executing the sql query
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    /// If not null
+                    /// Read all data form database
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            /// It will print number of counts
+                            Console.WriteLine("Gender = " + dataReader.GetString(0) + " , " + "Number Of Count = " + dataReader.GetDecimal(1));
                         }
                     }
                     else
