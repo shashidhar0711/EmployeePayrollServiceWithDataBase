@@ -436,5 +436,46 @@ namespace EmployeePayrollServiceWithDataBase
                 throw new Exception(exception.Message);
             }
         }
+
+        /// <summary>
+        /// Deletes the data from table.
+        /// </summary>
+        /// <param name="updateQuery">The update query.</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public bool DeleteDataFromTable(string updateQuery)
+        {
+            using (this.sqlConnection)
+            {
+                try
+                {
+                    /// Connections opens
+                    this.sqlConnection.Open();
+                    SqlCommand command = this.sqlConnection.CreateCommand();
+                    /// Gets or sets the sql statement to execute at the data base
+                    command.CommandText = updateQuery;
+                    /// It used to executing queries that does not return any data.
+                    /// Instead returns the number of rows affected.
+                    int numberOfAffectedRows = command.ExecuteNonQuery();
+                    if (numberOfAffectedRows != 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    /// Connections closes
+                    this.sqlConnection.Close();
+                }
+            }
+        }
     }
 }
