@@ -11,7 +11,7 @@ namespace EmployeePayrollServiceWithDataBase
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Salary { get; set; }
+        public decimal Salary { get; set; }
         public DateTime Start { get; set; }
         public char Gender { get; set; }
         public string Department { get; set; }
