@@ -12,7 +12,7 @@ namespace EmployeePayrollServiceWithDataBase
         {
             Console.WriteLine("Welcome to Employee Payroll Service");
             EmployeeRepo employeeRepo = new EmployeeRepo();
-            employeeRepo.GetAllEmployee();
+            Console.WriteLine(employeeRepo.UpdateTables("update Employee_Payroll set Basic_Pay = 30000000.00 where Id=3"));
         }
     }
 }
