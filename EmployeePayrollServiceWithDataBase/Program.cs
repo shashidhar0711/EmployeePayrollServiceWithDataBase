@@ -11,6 +11,8 @@ namespace EmployeePayrollServiceWithDataBase
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Payroll Service");
+            EmployeeRepo employeeRepo = new EmployeeRepo();
+            employeeRepo.GetAllEmployee();
         }
     }
 }
