@@ -180,7 +180,6 @@ namespace EmployeePayrollServiceWithDataBase
                 using (this.sqlConnection)
                 {
                     /// Writing sql query
-                    //string updateQuery = "select * from Employee_Payroll where start between cast('2019-01-01' as date) and SYSDATETIME()";
                     SqlCommand command = new SqlCommand(updateQuery, this.sqlConnection);
                     /// Opening connection
                     this.sqlConnection.Open();
@@ -475,6 +474,297 @@ namespace EmployeePayrollServiceWithDataBase
                     /// Connections closes
                     this.sqlConnection.Close();
                 }
+            }
+        }
+
+        /// <summary>
+        /// By using ER diagram implementing new table ie employee payroll
+        /// Gets all data from employee payroll table.
+        /// </summary>
+        public void GetAllDataFromEmployeePayrollTable()
+        {
+            try
+            {
+                /// Creating a references of employee model class
+                EmployeeModel employeeModel = new EmployeeModel();
+                using (this.sqlConnection)
+                {
+                    /// Writing sql query for retriving all the data
+                    string query = "Select * from EmployeePayroll";
+                    SqlCommand cmd = new SqlCommand(query, this.sqlConnection);
+                    /// Opening connentction
+                    this.sqlConnection.Open();
+                    /// Executing the sql query
+                    SqlDataReader dataReader = cmd.ExecuteReader();
+                    /// If not null
+                    /// Read all data form database
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            employeeModel.Id = dataReader.GetInt32(0);
+                            employeeModel.Name = dataReader.GetString(1);
+                            employeeModel.Start = dataReader.GetDateTime(2);
+                            employeeModel.Gender = Convert.ToChar(dataReader.GetString(3));
+                            employeeModel.Address = dataReader.GetString(4);
+                            employeeModel.DepartmentNumber = dataReader.GetInt32(5);
+                            employeeModel.PhoneNumber = dataReader.GetString(6);
+                            /// It will print all the data in employee payroll table
+
+                            Console.WriteLine(employeeModel.Id + " , " + employeeModel.Name + " , " + employeeModel.Salary + " , " + employeeModel.Start + " , " +
+                            employeeModel.Gender + " , " + employeeModel.Address + " , " + employeeModel.Department + " , " + employeeModel.PhoneNumber);
+                            Console.WriteLine();
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No data found");
+                    }
+                    dataReader.Close();
+                    /// Connection closes
+                    this.sqlConnection.Close();
+                }
+            }
+            
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                this.sqlConnection.Close();
+            }
+
+        }
+
+        /// <summary>
+        /// By using ER diagram implementing new table ie department
+        /// Gets all data from department table.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        public void GetAllDataFromDepartmentTable()
+        {
+            try
+            {
+                /// Creating a references of employee model class
+                EmployeeModel employeeModel = new EmployeeModel();
+                using (this.sqlConnection)
+                {
+                    /// Writing sql query for retriving all the data
+                    string query = "select * from Department";
+                    SqlCommand cmd = new SqlCommand(query, this.sqlConnection);
+                    /// Opening connentction
+                    this.sqlConnection.Open();
+                    /// Executing the sql query
+                    SqlDataReader dataReader = cmd.ExecuteReader();
+                    /// If not null
+                    /// Read all data form database
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            employeeModel.DepartmentNumber = dataReader.GetInt32(0);
+                            employeeModel.Department = dataReader.GetString(1);
+                            employeeModel.Location = dataReader.GetString(2);
+                            employeeModel.Id = dataReader.GetInt32(3);
+                            /// It will print all the data in department table
+
+                            Console.WriteLine(employeeModel.DepartmentNumber + " , " + employeeModel.Department + " , " + employeeModel.Location + " , " + employeeModel.Id);
+                            Console.WriteLine();
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No data found");
+                    }
+                    dataReader.Close();
+                    /// Connection closes
+                    this.sqlConnection.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                this.sqlConnection.Close();
+            }
+        }
+
+        /// <summary>
+        /// By using ER diagram implementing new table ie salary
+        /// Gets all data from salary table.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        public void GetAllDataFromSalaryTable()
+        {
+            try
+            {
+                /// Creating a references of employee model class
+                EmployeeModel employeeModel = new EmployeeModel();
+                using (this.sqlConnection)
+                {
+                    /// Writing sql query for retriving all the data
+                    string query = "select * from Salary";
+                    SqlCommand cmd = new SqlCommand(query, this.sqlConnection);
+                    /// Opening connentction
+                    this.sqlConnection.Open();
+                    /// Executing the sql query
+                    SqlDataReader dataReader = cmd.ExecuteReader();
+                    /// If not null
+                    /// Read all data form database
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            employeeModel.SalaryId = dataReader.GetInt32(0);
+                            employeeModel.BasicSalaryPay = dataReader.GetDecimal(1);
+                            employeeModel.Deductions = dataReader.GetDecimal(2);
+                            employeeModel.Taxable_Pay = dataReader.GetDecimal(3);
+                            employeeModel.Income_Tax = dataReader.GetDecimal(4);
+                            employeeModel.Net_Pay = dataReader.GetDecimal(5);
+                            employeeModel.Id = dataReader.GetInt32(6);
+                            /// It will print all the data in employee payroll table
+
+                            Console.WriteLine(employeeModel.SalaryId + " , " + employeeModel.BasicSalaryPay + " , " + employeeModel.Deductions + " , " + employeeModel.Taxable_Pay + " , " +
+                            employeeModel.Income_Tax + " , " + employeeModel.Net_Pay + " , " + employeeModel.Id);
+                            Console.WriteLine();
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No data found");
+                    }
+                    dataReader.Close();
+                    /// Connection closes
+                    this.sqlConnection.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                this.sqlConnection.Close();
+            }
+        }
+
+        /// <summary>
+        /// Performing aggregrating of salary of gender on new tables
+        /// Gettings the aggregate salary of each gender.
+        /// </summary>
+        /// <exception cref="Exception"></exception>
+        public void GettingAggregateSalaryofEachGender()
+        {
+            try
+            {
+                using (this.sqlConnection)
+                {
+                    /// Connection opens
+                    this.sqlConnection.Open();
+                    /// Writing sql query 
+                    string query = "Select Gender , Sum(BasicSalaryPay),Avg(BasicSalaryPay),Max(BasicSalaryPay),Min(BasicSalaryPay)" +
+                    ",Count(BasicSalaryPay) from Salary INNER JOIN EmployeePayroll on Salary.Id = EmployeePayroll.Id " +
+                    "group by Gender";
+                    SqlCommand command = new SqlCommand(query, this.sqlConnection);
+                    /// Executing the sql query
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            Console.WriteLine("Gender : "+ dataReader.GetString(0)+" , "+"Sum of all :"+ dataReader.GetDecimal(1)+" , "+"Average :"+ dataReader.GetDecimal(2)+" , "+
+                            "Maximum :"+dataReader.GetDecimal(3)+" , "+"Minimum :"+ dataReader.GetDecimal(4)+" , "+"Number of count :"+ dataReader.GetInt32(5));
+                            Console.WriteLine();
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("NO Data Found");
+                    }
+                    dataReader.Close();
+                    /// Connection closes
+                    this.sqlConnection.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
+
+        /// <summary>
+        /// On finding given date range on new table
+        /// Gets the employee data with give range on new table.
+        /// </summary>
+        /// <exception cref="Exception"></exception>
+        public void GetEmployeeDataWithGiveRangeOnNewTable()
+        {
+            try
+            {
+                /// Creating a references of employee model class
+                EmployeeModel employeeModel = new EmployeeModel();
+                using (this.sqlConnection)
+                {
+                    /// Writing sql query
+                    string query = "select emp.Id, emp.Name, emp.Start, emp.Gender, emp.Address, emp.DepartmentNumber, emp.PhoneNumber," +
+                                    "depart.Department, depart.Location" +
+                                    "sal.SalaryId, sal.BasicSalaryPay, Sal.Deductions, sal.Taxable_Pay, sal.Income_Tax, sal.Net_Pay" +
+                                    "from EmployeePayroll emp, Department depart, Salary sal " +
+                                    "where emp.DepartmentNumber = depart.DepartmentNumber and emp.Id = sal.Id and"+ 
+                                    "Start between cast('2019-01-01' as date) and SYSDATETIME()";
+                    SqlCommand command = new SqlCommand(query, this.sqlConnection);
+                    /// Opening connection
+                    this.sqlConnection.Open();
+                    /// Executing the sql query
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    /// If not null
+                    /// Read all data form database
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            employeeModel.Id = dataReader.GetInt32(0);
+                            employeeModel.Name = dataReader.GetString(1);
+                            employeeModel.Start = dataReader.GetDateTime(3);
+                            employeeModel.Gender = Convert.ToChar(dataReader.GetString(4));
+                            employeeModel.Address = dataReader.GetString(7);
+                            employeeModel.DepartmentNumber = dataReader.GetInt32(5);
+                            employeeModel.PhoneNumber = dataReader.GetString(6);
+                            employeeModel.Department = dataReader.GetString(6);
+                            employeeModel.Location = dataReader.GetString(6);
+                            employeeModel.SalaryId = dataReader.GetInt32(7);
+                            employeeModel.BasicSalaryPay = dataReader.GetDecimal(8);
+                            employeeModel.Deductions = dataReader.GetDecimal(9);
+                            employeeModel.Taxable_Pay = dataReader.GetDecimal(10);
+                            employeeModel.Income_Tax = dataReader.GetDecimal(11);
+                            employeeModel.Net_Pay = dataReader.GetDecimal(12);
+
+                            Console.WriteLine(employeeModel.Id + " , " + employeeModel.Name + " , " + employeeModel.Start + " , " + employeeModel.Gender + " , " +
+                            employeeModel.Address + " , " + employeeModel.DepartmentNumber + " , " + employeeModel.PhoneNumber + " , " + employeeModel.Department + " , " +
+                            employeeModel.Location +" , "+employeeModel.Basic_Pay + " , " + employeeModel.Deductions + " , " + employeeModel.Taxable_Pay + " , " + employeeModel.Income_Tax + " , " + employeeModel.Net_Pay);
+                            Console.WriteLine();
+
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No data found");
+                    }
+                    dataReader.Close();
+                    /// Closing connection
+                    this.sqlConnection.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
             }
         }
     }
