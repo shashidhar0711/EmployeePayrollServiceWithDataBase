@@ -11,9 +11,14 @@ namespace EmployeePayrollServiceWithDataBase
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Payroll Service");
+            /// Creating references of object class
             EmployeeRepo employeeRepo = new EmployeeRepo();
-            /// Writing sql query to delete data form employee payroll table and it returns false if exist
-            Console.WriteLine(employeeRepo.DeleteDataFromTable("delete from Employee_Payroll where Id = 3"));
+            employeeRepo.GetAllDataFromEmployeePayrollTable();
+            employeeRepo.GetAllDataFromDepartmentTable();
+            employeeRepo.GetAllDataFromSalaryTable();
+            employeeRepo.GettingAggregateSalaryofEachGender();
+            employeeRepo.GetEmployeeDataWithGiveRangeOnNewTable();
+
 
         }
     }
