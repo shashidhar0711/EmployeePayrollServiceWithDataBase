@@ -619,7 +619,7 @@ namespace EmployeePayrollServiceWithDataBase
                         while (dataReader.Read())
                         {
                             employeeModel.SalaryId = dataReader.GetInt32(0);
-                            employeeModel.BasicSalaryPay = dataReader.GetDecimal(1);
+                            employeeModel.Basic_Pay = dataReader.GetDecimal(1);
                             employeeModel.Deductions = dataReader.GetDecimal(2);
                             employeeModel.Taxable_Pay = dataReader.GetDecimal(3);
                             employeeModel.Income_Tax = dataReader.GetDecimal(4);
@@ -627,7 +627,7 @@ namespace EmployeePayrollServiceWithDataBase
                             employeeModel.Id = dataReader.GetInt32(6);
                             /// It will print all the data in employee payroll table
 
-                            Console.WriteLine(employeeModel.SalaryId + " , " + employeeModel.BasicSalaryPay + " , " + employeeModel.Deductions + " , " + employeeModel.Taxable_Pay + " , " +
+                            Console.WriteLine(employeeModel.SalaryId + " , " + employeeModel.Basic_Pay + " , " + employeeModel.Deductions + " , " + employeeModel.Taxable_Pay + " , " +
                             employeeModel.Income_Tax + " , " + employeeModel.Net_Pay + " , " + employeeModel.Id);
                             Console.WriteLine();
                         }
@@ -740,7 +740,7 @@ namespace EmployeePayrollServiceWithDataBase
                             employeeModel.Department = dataReader.GetString(6);
                             employeeModel.Location = dataReader.GetString(6);
                             employeeModel.SalaryId = dataReader.GetInt32(7);
-                            employeeModel.BasicSalaryPay = dataReader.GetDecimal(8);
+                            employeeModel.Basic_Pay = dataReader.GetDecimal(8);
                             employeeModel.Deductions = dataReader.GetDecimal(9);
                             employeeModel.Taxable_Pay = dataReader.GetDecimal(10);
                             employeeModel.Income_Tax = dataReader.GetDecimal(11);
