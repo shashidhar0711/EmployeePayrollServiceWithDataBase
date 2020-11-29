@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EmployeePayrollServiceWithDataBase
 {
@@ -13,13 +14,15 @@ namespace EmployeePayrollServiceWithDataBase
             Console.WriteLine("Welcome to Employee Payroll Service");
             /// Creating references of object class
             EmployeeRepo employeeRepo = new EmployeeRepo();
-            employeeRepo.GetAllDataFromEmployeePayrollTable();
-            employeeRepo.GetAllDataFromDepartmentTable();
-            employeeRepo.GetAllDataFromSalaryTable();
-            employeeRepo.GettingAggregateSalaryofEachGender();
-            employeeRepo.GetEmployeeDataWithGiveRangeOnNewTable();
+            //employeeRepo.GetAllDataFromEmployeePayrollTable();
+            //employeeRepo.GetAllDataFromDepartmentTable();
+            //employeeRepo.GetAllDataFromSalaryTable();
+            //employeeRepo.GettingAggregateSalaryofEachGender();
+            //employeeRepo.GetEmployeeDataWithGiveRangeOnNewTable();
 
-
+            EmployeePayrollOperation employeePayrollOperations = new EmployeePayrollOperation();
+            List<EmployeeModel> employeePayrollDataList = new List<EmployeeModel>();
+            employeePayrollOperations.AddEmployeeToPayroll(employeePayrollDataList);
         }
     }
 }
