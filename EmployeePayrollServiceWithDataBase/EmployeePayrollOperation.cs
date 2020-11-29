@@ -92,5 +92,25 @@ namespace EmployeePayrollServiceWithDataBase
             employeePayrollList.Add(employeeModel);
         }
 
+        /// <summary>
+        /// UC11 Using Threads
+        /// Adds the employee payroll using thread.
+        /// </summary>
+        /// <param name="employeePayrollList">The employee payroll list.</param>
+        public void AddEmployeePayrollUsingThread(List<EmployeeModel> employeePayrollList)
+        {
+            employeePayrollList.ForEach(employeeData =>
+            {
+                Task thread = new Task(() =>
+                {
+                    Console.WriteLine("Employee being added: " + employeeData.Name);
+                    Console.WriteLine("Current thread Id: " + Thread.CurrentThread.ManagedThreadId);
+                    this.AddEmployee(employeeData);
+                    Console.WriteLine("Employee Added:  " + employeeData.Name);
+                });
+                thread.Start();
+            });
+        }
+
     }
 }
