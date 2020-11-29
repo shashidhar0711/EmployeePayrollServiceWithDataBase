@@ -20,9 +20,9 @@ namespace EmployeePayrollServiceWithDataBase
             //employeeRepo.GettingAggregateSalaryofEachGender();
             //employeeRepo.GetEmployeeDataWithGiveRangeOnNewTable();
 
-            EmployeePayrollOperation employeePayrollOperations = new EmployeePayrollOperation();
-            List<EmployeeModel> employeePayrollDataList = new List<EmployeeModel>();
-            employeePayrollOperations.AddEmployeeToPayroll(employeePayrollDataList);
+           // EmployeePayrollOperation employeePayrollOperations = new EmployeePayrollOperation();
+           // List<EmployeeModel> employeePayrollDataList = new List<EmployeeModel>();
+           // employeePayrollOperations.AddEmployeeToPayroll(employeePayrollDataList);
         }
     }
 }
