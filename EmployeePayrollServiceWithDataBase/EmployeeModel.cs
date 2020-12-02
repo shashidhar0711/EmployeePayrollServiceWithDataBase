@@ -12,7 +12,7 @@ namespace EmployeePayrollServiceWithDataBase
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Salary { get; set; }
-        public int Start { get; set; }
+        public DateTime Start { get; set; }
         public char Gender { get; set; }
         public string Department { get; set; }
         public int DepartmentNumber { get; set; }
@@ -45,7 +45,7 @@ namespace EmployeePayrollServiceWithDataBase
         /// <param name="Income_Tax">The income tax.</param>
         /// <param name="Net_Pay">The net pay.</param>
         /// <param name="Location">The location.</param>
-        public EmployeeModel(int Id,string Name,decimal Salary,int Start, char Gender, string Department,int DepartmentNumber,string PhoneNumber,
+        public EmployeeModel(int Id,string Name,decimal Salary, DateTime Start, char Gender, string Department,int DepartmentNumber,string PhoneNumber,
             string Address,int SalaryId,decimal Basic_Pay,decimal Deductions,decimal Taxable_Pay,decimal Income_Tax,decimal Net_Pay,string Location)
         {
             this.Id = Id;
